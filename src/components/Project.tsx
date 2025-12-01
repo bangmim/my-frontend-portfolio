@@ -81,6 +81,14 @@ export default function Project() {
 
     const learningProjects = [
         {
+            title: 'ChatApp - 실시간 1:1 채팅 앱',
+            description: '개인 사이드 프로젝트',
+            skills: 'React Native (TypeScript), Firebase Authentication, Firestore, Storage, React Navigation',
+            link: 'https://github.com/bangmim/react-native-chatapp-firebase',
+            video: '/video/chatapp.mp4',
+            review: '텍스트, 이미지, 음성 메시지를 전송할 수 있는 실시간 1:1 채팅 앱입니다. Firebase Authentication · Firestore · Storage를 기반으로 별도 서버 없이 구현했으며, onSnapshot을 활용한 실시간 메시지 수신, 사용자별 마지막 읽은 시점을 기준으로 한 안 읽은 메시지 수 계산, 이미지/음성 업로드 및 권한 처리(카메라/갤러리/마이크) 등을 설계·구현했습니다. 이 과정에서 Firebase 보안 규칙 설계, 멀티미디어 파일 경로 설계, 안드로이드/iOS 권한 체계 차이에 대한 대응 등을 경험했습니다.',
+        },
+        {
             title: '자동차 사고 다발 지역 조회',
             description: '그룹 프로젝트 (4인, 조장)',
             skills: 'React, Recharts, Kakao Map API, 공공데이터 API',
@@ -211,7 +219,7 @@ export default function Project() {
                                     <h4 className="text-lg font-semibold text-gray-900 mb-3 text-center">구현 영상</h4>
                                     <div className="overflow-hidden">
                                         <ReactPlayer
-                                            url={project.video}
+                                            url={resolvePublicUrl(project.video)}
                                             width="100%"
                                             height="400px"
                                             playing={false}
@@ -264,6 +272,24 @@ export default function Project() {
                                 <div className="mb-4 p-4 bg-white border-l-2 border-gray-300">
                                     <h4 className="text-base font-semibold text-gray-700 mb-2">역할 및 경험</h4>
                                     <p className="text-base text-gray-700 leading-relaxed">{project.review}</p>
+                                </div>
+                            )}
+                            {'video' in project && project.video && (
+                                <div className="mt-4">
+                                    <h4 className="text-base font-semibold text-gray-700 mb-2 text-center">
+                                        구현 영상
+                                    </h4>
+                                    <div className="overflow-hidden">
+                                        <ReactPlayer
+                                            url={resolvePublicUrl(project.video)}
+                                            width="100%"
+                                            height="260px"
+                                            playing={false}
+                                            muted={false}
+                                            controls={true}
+                                            loop={true}
+                                        />
+                                    </div>
                                 </div>
                             )}
                             <a
