@@ -81,12 +81,20 @@ export default function Project() {
 
     const learningProjects = [
         {
+            title: 'YouTube Music 홈 화면 클론',
+            description: 'React Native UI/애니메이션 학습 프로젝트',
+            skills: 'React Native (TypeScript), Animated API, react-native-linear-gradient, Font Awesome, Safe Area',
+            link: 'https://github.com/bangmim/react-native-youtubemusic-clone',
+            video: '/video/youtubemusic.mov',
+            review: 'React Native UI/애니메이션 온라인 강의 예제를 기반으로 YouTube Music 홈 화면을 클론한 프로젝트입니다.\n\nReact Native로 YouTube Music의 홈 화면 인터랙션을 클론한 프로젝트입니다. 스크롤 위치에 따라 상단 헤더가 자연스럽게 숨겨졌다가 다시 나타나는 애니메이션, 카테고리 탭이 상단에 고정(sticky)되면서 배경과 스타일이 바뀌는 효과, 미니 플레이어와 풀스크린 플레이어 간 전환 애니메이션을 구현하는 데 집중했습니다. 또한 그라데이션 배경, Safe Area 처리, 아이콘 시스템(Font Awesome) 적용, @faker-js/faker를 사용한 더미 데이터 생성 등 실제 서비스에 가까운 UI 구조를 설계하면서 React Native에서의 레이아웃과 애니메이션 패턴을 정리할 수 있었습니다.',
+        },
+        {
             title: 'ChatApp - 실시간 1:1 채팅 앱',
             description: '개인 사이드 프로젝트',
             skills: 'React Native (TypeScript), Firebase Authentication, Firestore, Storage, React Navigation',
             link: 'https://github.com/bangmim/react-native-chatapp-firebase',
             video: '/video/chatapp.mp4',
-            review: '텍스트, 이미지, 음성 메시지를 전송할 수 있는 실시간 1:1 채팅 앱입니다. Firebase Authentication · Firestore · Storage를 기반으로 별도 서버 없이 구현했으며, onSnapshot을 활용한 실시간 메시지 수신, 사용자별 마지막 읽은 시점을 기준으로 한 안 읽은 메시지 수 계산, 이미지/음성 업로드 및 권한 처리(카메라/갤러리/마이크) 등을 설계·구현했습니다. 이 과정에서 Firebase 보안 규칙 설계, 멀티미디어 파일 경로 설계, 안드로이드/iOS 권한 체계 차이에 대한 대응 등을 경험했습니다.',
+            review: 'React Native + Firebase 온라인 강의를 기반으로, 실시간 1:1 채팅 앱을 따라 구현한 프로젝트입니다.\n\n텍스트, 이미지, 음성 메시지를 전송할 수 있는 실시간 1:1 채팅 앱입니다. Firebase Authentication · Firestore · Storage를 기반으로 별도 서버 없이 구현했으며, onSnapshot을 활용한 실시간 메시지 수신, 사용자별 마지막 읽은 시점을 기준으로 한 안 읽은 메시지 수 계산, 이미지/음성 업로드 및 권한 처리(카메라/갤러리/마이크) 등을 설계·구현했습니다. 이 과정에서 Firebase 보안 규칙 설계, 멀티미디어 파일 경로 설계, 안드로이드/iOS 권한 체계 차이에 대한 대응 등을 경험했습니다.',
         },
         {
             title: '자동차 사고 다발 지역 조회',
