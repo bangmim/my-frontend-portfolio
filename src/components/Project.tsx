@@ -45,7 +45,7 @@ export default function Project() {
             subtitle: 'React Native 앱 개발 및 유지보수 (2023.10 ~ 현재)',
             image: 'https://bangmim.github.io/my-frontend-portfolio/img/pmh.jpg',
             description:
-                '약국 및 의료기관을 위한 종합 관리 앱입니다. 2023년 10월부터 현재까지 개발 및 유지보수를 담당하고 있으며, 현재 48,000명의 사용자가 이용하고 있습니다.',
+                '약매니저는 약국과 의료기관에서 의약품 계수·주문·재고 관리와 커뮤니티를 한 번에 사용할 수 있는 종합 업무 앱입니다. 2023년 10월부터 프론트엔드 개발과 유지보수를 맡아, 현재 약 4만 8천 명의 사용자가 사용하는 서비스를 운영하고 있습니다.',
             skills: [
                 { name: 'React Native', icon: '📱' },
                 { name: 'TypeScript', icon: '🔷' },
@@ -69,10 +69,10 @@ export default function Project() {
                 },
             ],
             highlights: [
-                '커뮤니티 기능 개발',
-                '코드 품질 개선 및 리팩토링',
-                '실시간 채팅 기능 개발',
-                '약매니저 사내 CMS 신규 개발',
+                '실시간 채팅 · 커뮤니티 화면 개발 및 UX 개선',
+                'Redux · Context API · Zustand, TypeScript를 활용한 상태 관리 및 리팩토링',
+                '약매니저 사내 CMS(관리자 페이지) 신규 화면 개발',
+                '릴리즈 대응과 운영 이슈 해결 지원',
             ],
             review: '입사 직후 본인인증 도입 및 대규모 리뉴얼이 있었으며, 커뮤니티 기능 개발과 함께 기존 코드를 분석했습니다.\n\n리뉴얼 초기 발생한 불안정 이슈를 겪으며 배포 전 품질 검증(QA)과 방어적 코딩의 중요성을 절감했습니다. 이를 위해 TypeScript 도입을 통한 타입 안정성 확보와 불필요한 의존성 정리에 집중했고, 그 결과 비정상 종료율을 줄이며 안정적인 서비스를 구축할 수 있었습니다.\n\n기능적으로는 중복된 모달을 Redux로 단일화해 DX를 개선했고, 이질적인 로딩 UI는 Animated 공통 컴포넌트로 통일했습니다. 단발성 이벤트 페이지는 WebView를 연동 및 동적 라우팅으로 유연성을 확보했으며, 복잡한 iOS 제스처는 Zustand 전역 네비게이션으로 해결했습니다.\n\n실시간 채팅의 유실 문제는 큐·재전송·Singleton 전략으로 신뢰성을 높였고, 사내 CMS는 TailwindCSS로 생산성을 높이고 Google OAuth와 Host 감지 기반 진입점을 적용해 보안과 접근 편의성을 동시에 강화했습니다.',
             metricsImages: ['/img/crashImage1.png', '/img/crashImage2.png'],
@@ -81,11 +81,18 @@ export default function Project() {
 
     const learningProjects = [
         {
+            title: 'Movie Release Reminder - 영화 개봉일 리마인더 앱',
+            description: 'React Native 네이티브 모듈과 로컬 알림을 활용한 개인 사이드 프로젝트',
+            skills: 'React Native (TypeScript), TMDB API, React Navigation, TanStack Query, iOS/Android 캘린더 네이티브 모듈, 로컬 푸시 알림',
+            video: 'https://www.youtube.com/shorts/esW5zpTkxvs',
+            review: 'TMDB API를 활용해 최신 영화 정보를 조회하고, 관심 있는 영화의 개봉일을 기기 캘린더에 추가하거나 로컬 푸시 알림으로 받아볼 수 있는 앱입니다.\n\niOS(EventKit, Swift)와 Android(Calendar Provider, Kotlin) 네이티브 모듈을 직접 구현해 React Native와 브릿지로 연결했고, TanStack Query를 사용해 서버 상태를 캐싱·리패칭하며 API 호출 흐름을 정리했습니다.\n\n이 과정에서 플랫폼별 권한 처리, 캘린더/알림 스케줄링, 네이티브 모듈의 에러 처리 패턴을 학습하며 크로스 플랫폼 환경에서의 사용자 경험과 안정성을 함께 고려하는 방법을 익혔습니다.',
+        },
+        {
             title: 'YouTube Music 홈 화면 클론',
             description: 'React Native UI/애니메이션 학습 프로젝트',
             skills: 'React Native (TypeScript), Animated API, react-native-linear-gradient, Font Awesome, Safe Area',
             link: 'https://github.com/bangmim/react-native-youtubemusic-clone',
-            video: '/video/youtubemusic.mov',
+            video: 'https://www.youtube.com/shorts/vHIRL9L9Tlk',
             review: 'React Native UI/애니메이션 온라인 강의 예제를 기반으로 YouTube Music 홈 화면을 클론한 프로젝트입니다.\n\nReact Native로 YouTube Music의 홈 화면 인터랙션을 클론한 프로젝트입니다. 스크롤 위치에 따라 상단 헤더가 자연스럽게 숨겨졌다가 다시 나타나는 애니메이션, 카테고리 탭이 상단에 고정(sticky)되면서 배경과 스타일이 바뀌는 효과, 미니 플레이어와 풀스크린 플레이어 간 전환 애니메이션을 구현하는 데 집중했습니다. 또한 그라데이션 배경, Safe Area 처리, 아이콘 시스템(Font Awesome) 적용, @faker-js/faker를 사용한 더미 데이터 생성 등 실제 서비스에 가까운 UI 구조를 설계하면서 React Native에서의 레이아웃과 애니메이션 패턴을 정리할 수 있었습니다.',
         },
         {
@@ -93,7 +100,7 @@ export default function Project() {
             description: '개인 사이드 프로젝트',
             skills: 'React Native (TypeScript), Firebase Authentication, Firestore, Storage, React Navigation',
             link: 'https://github.com/bangmim/react-native-chatapp-firebase',
-            video: '/video/chatapp.mp4',
+            video: 'https://youtu.be/cbqwafX-eoA',
             review: 'React Native + Firebase 온라인 강의를 기반으로, 실시간 1:1 채팅 앱을 따라 구현한 프로젝트입니다.\n\n텍스트, 이미지, 음성 메시지를 전송할 수 있는 실시간 1:1 채팅 앱입니다. Firebase Authentication · Firestore · Storage를 기반으로 별도 서버 없이 구현했으며, onSnapshot을 활용한 실시간 메시지 수신, 사용자별 마지막 읽은 시점을 기준으로 한 안 읽은 메시지 수 계산, 이미지/음성 업로드 및 권한 처리(카메라/갤러리/마이크) 등을 설계·구현했습니다. 이 과정에서 Firebase 보안 규칙 설계, 멀티미디어 파일 경로 설계, 안드로이드/iOS 권한 체계 차이에 대한 대응 등을 경험했습니다.',
         },
         {
@@ -300,14 +307,16 @@ export default function Project() {
                                     </div>
                                 </div>
                             )}
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium"
-                            >
-                                프로젝트 보기 →
-                            </a>
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium"
+                                >
+                                    프로젝트 보기 →
+                                </a>
+                            )}
                         </div>
                     ))}
                 </div>
