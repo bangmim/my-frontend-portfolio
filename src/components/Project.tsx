@@ -88,6 +88,13 @@ export default function Project() {
             review: 'TMDB API를 활용해 최신 영화 정보를 조회하고, 관심 있는 영화의 개봉일을 기기 캘린더에 추가하거나 로컬 푸시 알림으로 받아볼 수 있는 앱입니다.\n\niOS(EventKit, Swift)와 Android(Calendar Provider, Kotlin) 네이티브 모듈을 직접 구현해 React Native와 브릿지로 연결했고, TanStack Query를 사용해 서버 상태를 캐싱·리패칭하며 API 호출 흐름을 정리했습니다.\n\n이 과정에서 플랫폼별 권한 처리, 캘린더/알림 스케줄링, 네이티브 모듈의 에러 처리 패턴을 학습하며 크로스 플랫폼 환경에서의 사용자 경험과 안정성을 함께 고려하는 방법을 익혔습니다.',
         },
         {
+            title: 'AccountBook - 가계부 앱 (React Native + SQLite)',
+            description: '로컬 SQLite DB를 활용한 개인 가계부 앱 사이드 프로젝트',
+            skills: 'React Native (TypeScript), react-native-sqlite-storage, React Navigation, react-native-calendars, react-native-chart-kit, 카메라/갤러리 연동',
+            video: 'https://youtube.com/shorts/0iPpcSba0NE',
+            review: '월별 수입·지출 내역을 등록·조회할 수 있는 가계부 앱입니다.\n\nSQLite를 사용해 거래 내역과 카테고리를 로컬에 저장하고, 월별·카테고리별 통계를 차트로 시각화했습니다. 캘린더 기반 메인/월별 화면과 상세 페이지를 React Navigation으로 구성하고, 카메라·갤러리 연동을 통해 영수증 사진을 함께 관리할 수 있도록 구현했습니다.\n\n이 프로젝트를 통해 로컬 DB 스키마 설계, 트랜잭션 단위의 데이터 처리, 모바일 환경에서의 퍼포먼스를 고려한 쿼리 설계, 그리고 네이티브 모듈 사용 패턴을 실습했습니다.',
+        },
+        {
             title: 'YouTube Music 홈 화면 클론',
             description: 'React Native UI/애니메이션 학습 프로젝트',
             skills: 'React Native (TypeScript), Animated API, react-native-linear-gradient, Font Awesome, Safe Area',
@@ -274,11 +281,11 @@ export default function Project() {
             <div className="section border-t border-gray-100">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">개인 학습 프로젝트</h2>
                 <p className="text-gray-600 mb-6 text-base">프론트엔드 개발 학습 과정에서 진행한 프로젝트입니다.</p>
-                <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {learningProjects.map((project, index) => (
                         <div
                             key={index}
-                            className="p-6 border-l-4 border-gray-400 hover:border-gray-900 transition-colors duration-200 bg-gray-50"
+                            className="p-6 border-l-4 border-gray-400 hover:border-gray-900 transition-colors duration-200 bg-gray-50 h-full flex flex-col"
                         >
                             <h3 className="font-bold text-gray-900 mb-2 text-xl">{project.title}</h3>
                             <p className="text-sm text-blue-600 font-medium mb-3">{project.description}</p>

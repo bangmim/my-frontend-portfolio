@@ -166,26 +166,23 @@ export default function Layout() {
             </aside>
 
             {/* 메인 컨텐츠 */}
-            <main className="pt-20 md:pt-12 md:ml-80 px-6 md:px-12 pb-12">
-                <div className="max-w-4xl mx-auto animate-fade-in">
+            <main className="pt-20 md:pt-12 md:ml-80 px-4 md:px-8 pb-12">
+                <div className="max-w-6xl mx-auto animate-fade-in">
                     {/* <section id="home" className="scroll-mt-24 md:scroll-mt-16 mb-16">
                         <Home />
                     </section> */}
                     <section id="about" className="scroll-mt-24 md:scroll-mt-16 mb-16">
                         <About />
                     </section>
-                    <section
-                        id="project"
-                        className="scroll-mt-24 md:scroll-mt-16 border-t border-gray-100 pt-10"
-                    >
+                    <section id="project" className="scroll-mt-24 md:scroll-mt-16 border-t border-gray-100 pt-10">
                         <Project />
                     </section>
                 </div>
             </main>
 
             {/* Footer */}
-            <footer className="md:ml-80 py-6 px-6 md:px-12 border-t border-gray-200">
-                <div className="max-w-4xl mx-auto text-center text-sm text-gray-600">
+            <footer className="md:ml-80 py-6 px-4 md:px-8 border-t border-gray-200">
+                <div className="max-w-6xl mx-auto text-center text-sm text-gray-600">
                     © 2025 Mihyun Park.{' '}
                     <a
                         href="https://github.com/bangmim/pmh"
