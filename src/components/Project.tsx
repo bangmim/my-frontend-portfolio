@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
+import UnderlineText from './UnderlineText';
+import ContactSection from './ContactSection';
 
 interface Skill {
     name: string;
@@ -26,6 +28,7 @@ export const resolvePublicUrl = (path: string) => {
     const base = process.env.PUBLIC_URL || '';
     return `${base}${path}`;
 };
+
 export default function Project() {
     const [previewSrc, setPreviewSrc] = useState<string | null>(null);
 
@@ -79,6 +82,15 @@ export default function Project() {
         },
     ];
 
+    const sideProjects = [
+        {
+            title: '딱,가계부 - 가계부 관리 앱',
+            description: 'Android 출시 예정 · 비공개 테스트 진행 중',
+            skills: 'React Native (TypeScript), Supabase, React Navigation, react-native-calendars, react-native-chart-kit, react-native-vision-camera, Google Mobile Ads',
+            review: 'Supabase 클라우드 DB 기반 가계부 앱으로, Android 스토어 출시를 목표로 개발 중입니다. 현재 비공개 테스트 진행 중입니다.\n\nSupabase Authentication으로 회원가입/로그인을 구현하고, 실시간 데이터 동기화로 지출/수입 내역을 관리합니다. 카메라 촬영 및 갤러리 선택으로 영수증 이미지를 첨부하고, 차트와 캘린더로 월별 통계를 시각화했습니다. Google Mobile Ads를 연동해 배너 및 전면 광고를 구현했습니다.\n\nAI 도구를 활용해 UI/UX 디자인을 기획하고, 그라데이션 배경과 반응형 레이아웃으로 사용자 경험을 개선했습니다. 클라우드 DB 설계, 인증 시스템 구축, 광고 수익화 모델 적용 등 실제 서비스 출시를 위한 전 과정을 경험했습니다.',
+        },
+    ];
+
     const learningProjects = [
         {
             title: 'Movie Release Reminder - 영화 개봉일 리마인더 앱',
@@ -86,13 +98,6 @@ export default function Project() {
             skills: 'React Native (TypeScript), TMDB API, React Navigation, TanStack Query, iOS/Android 캘린더 네이티브 모듈, 로컬 푸시 알림',
             video: 'https://www.youtube.com/shorts/esW5zpTkxvs',
             review: 'TMDB API를 활용해 최신 영화 정보를 조회하고, 관심 있는 영화의 개봉일을 기기 캘린더에 추가하거나 로컬 푸시 알림으로 받아볼 수 있는 앱입니다.\n\niOS(EventKit, Swift)와 Android(Calendar Provider, Kotlin) 네이티브 모듈을 직접 구현해 React Native와 브릿지로 연결했고, TanStack Query를 사용해 서버 상태를 캐싱·리패칭하며 API 호출 흐름을 정리했습니다.\n\n이 과정에서 플랫폼별 권한 처리, 캘린더/알림 스케줄링, 네이티브 모듈의 에러 처리 패턴을 학습하며 크로스 플랫폼 환경에서의 사용자 경험과 안정성을 함께 고려하는 방법을 익혔습니다.',
-        },
-        {
-            title: 'AccountBook - 가계부 앱 (React Native + SQLite)',
-            description: '로컬 SQLite DB를 활용한 개인 가계부 앱 사이드 프로젝트',
-            skills: 'React Native (TypeScript), react-native-sqlite-storage, React Navigation, react-native-calendars, react-native-chart-kit, 카메라/갤러리 연동',
-            video: 'https://youtube.com/shorts/0iPpcSba0NE',
-            review: '월별 수입·지출 내역을 등록·조회할 수 있는 가계부 앱입니다.\n\nSQLite를 사용해 거래 내역과 카테고리를 로컬에 저장하고, 월별·카테고리별 통계를 차트로 시각화했습니다. 캘린더 기반 메인/월별 화면과 상세 페이지를 React Navigation으로 구성하고, 카메라·갤러리 연동을 통해 영수증 사진을 함께 관리할 수 있도록 구현했습니다.\n\n이 프로젝트를 통해 로컬 DB 스키마 설계, 트랜잭션 단위의 데이터 처리, 모바일 환경에서의 퍼포먼스를 고려한 쿼리 설계, 그리고 네이티브 모듈 사용 패턴을 실습했습니다.',
         },
         {
             title: 'YouTube Music 홈 화면 클론',
@@ -139,11 +144,17 @@ export default function Project() {
             )}
 
             {/* 실무 프로젝트 */}
-            <div className="section pt-0">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">실무 프로젝트</h2>
-                <div className="space-y-0">
+            <div className="section pt-0" id="projects">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center">
+                    <UnderlineText text="실무 프로젝트" color="primary" />
+                </h2>
+                <p className="text-center text-gray-600 mb-12">현재 48,000명이 사용하는 서비스를 개발하고 있습니다</p>
+                <div className="space-y-8">
                     {projects.map((project) => (
-                        <div key={project.id} className="section">
+                        <div
+                            key={project.id}
+                            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 p-8"
+                        >
                             {/* 헤더 */}
                             <div className="mb-4">
                                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{project.title}</h2>
@@ -277,19 +288,58 @@ export default function Project() {
                 </div>
             </div>
 
+            {/* 사이드 프로젝트 (출시) */}
+            <div className="section border-t-2 border-gray-200 pt-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center">
+                    <UnderlineText text="사이드 프로젝트" color="accent" />
+                </h2>
+                <p className="text-gray-600 mb-12 text-base text-center">
+                    실제 서비스 출시를 목표로 개발 중인 프로젝트입니다
+                </p>
+                <div className="space-y-8">
+                    {sideProjects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg border-2 border-blue-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 p-8"
+                        >
+                            <h3 className="font-bold text-gray-900 mb-2 text-2xl">{project.title}</h3>
+                            <p className="text-base text-blue-700 font-semibold mb-4 flex items-center gap-2">
+                                <span className="inline-block w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                {project.description}
+                            </p>
+                            <p className="text-sm text-gray-600 mb-4 font-medium">{project.skills}</p>
+                            {project.review && (
+                                <div className="mb-4 p-6 bg-white rounded-lg border-l-4 border-blue-500">
+                                    <h4 className="text-base font-semibold text-gray-700 mb-3">프로젝트 상세</h4>
+                                    <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">
+                                        {project.review}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             {/* 학습 프로젝트 */}
-            <div className="section border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">개인 학습 프로젝트</h2>
-                <p className="text-gray-600 mb-6 text-base">프론트엔드 개발 학습 과정에서 진행한 프로젝트입니다.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="section border-t-2 border-gray-200 pt-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center">
+                    <UnderlineText text="개인 학습 프로젝트" color="secondary" />
+                </h2>
+                <p className="text-gray-600 mb-12 text-base text-center">
+                    프론트엔드 개발 학습 과정에서 진행한 프로젝트입니다
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {learningProjects.map((project, index) => (
                         <div
                             key={index}
-                            className="p-6 border-l-4 border-gray-400 hover:border-gray-900 transition-colors duration-200 bg-gray-50 h-full flex flex-col"
+                            className="p-6 border-l-4 border-gray-400 hover:border-blue-500 transition-all duration-300 bg-white hover:shadow-lg rounded-r-lg h-full flex flex-col group"
                         >
-                            <h3 className="font-bold text-gray-900 mb-2 text-xl">{project.title}</h3>
+                            <h3 className="font-bold text-gray-900 mb-2 text-xl group-hover:text-blue-600 transition-colors duration-300">
+                                {project.title}
+                            </h3>
                             <p className="text-sm text-blue-600 font-medium mb-3">{project.description}</p>
-                            <p className="text-sm text-gray-600 mb-4">{project.skills}</p>
+                            <p className="text-sm text-gray-600 mb-4 font-medium">{project.skills}</p>
                             {project.review && (
                                 <div className="mb-4 p-4 bg-white border-l-2 border-gray-300">
                                     <h4 className="text-base font-semibold text-gray-700 mb-2">역할 및 경험</h4>
@@ -329,57 +379,7 @@ export default function Project() {
                 </div>
             </div>
             {/* Contact */}
-            <div className="section">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">Contact</h2>
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-gray-700">
-                        <span className="text-2xl">📧</span>
-                        <div>
-                            <p className="text-sm text-gray-500 mb-1">Email</p>
-                            <a
-                                href="mailto:akiyun10@gmail.com"
-                                className="text-lg hover:text-gray-900 transition-colors"
-                            >
-                                akiyun10@gmail.com
-                            </a>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-700">
-                        <svg
-                            className="w-8 h-8 text-gray-600"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                        <div>
-                            <p className="text-sm text-gray-500 mb-1">View Source Code</p>
-                            <a
-                                href="https://github.com/bangmim/my-frontend-portfolio"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-lg hover:text-gray-900 transition-colors"
-                            >
-                                github.com/bangmim/pmh
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* 마무리 메시지 */}
-            <div className="section bg-gray-900 text-white p-8">
-                <p className="text-xl md:text-2xl font-medium leading-relaxed">
-                    실무 경험과 학업을 병행하며 성장하고 있습니다.
-                    <br />
-                    앞으로도 사용자에게 가치 있는 서비스를 만드는 개발자가 되겠습니다.
-                </p>
-            </div>
+            <ContactSection />
         </div>
     );
 }

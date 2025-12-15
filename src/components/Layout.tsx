@@ -12,15 +12,15 @@ export default function Layout() {
         if ('scrollRestoration' in window.history) {
             window.history.scrollRestoration = 'manual';
         }
-        if (window.location.hash !== '#about') {
-            window.history.replaceState(null, '', '#about');
+        if (!window.location.hash) {
+            window.history.replaceState(null, '', '#home');
         }
         window.scrollTo(0, 0);
     }, []);
 
     useEffect(() => {
         const handleHashChange = () => {
-            setActivePath(window.location.hash || '#about');
+            setActivePath(window.location.hash || '#home');
         };
         handleHashChange();
         window.addEventListener('hashchange', handleHashChange);
@@ -29,7 +29,7 @@ export default function Layout() {
 
     // 스크롤 위치에 따라 활성 탭 업데이트 (중앙 근처 섹션 기준)
     useEffect(() => {
-        const sectionIds = ['about', 'project'];
+        const sectionIds = ['home', 'about', 'project'];
 
         const updateActiveByScroll = () => {
             const centerY = window.innerHeight * 0.4; // 화면 상단 고정 네비 고려하여 살짝 위쪽
@@ -62,7 +62,7 @@ export default function Layout() {
                 if (bestId) current = `#${bestId}`;
             }
 
-            const currentHash = window.location.hash || '#about';
+            const currentHash = window.location.hash || '#home';
             if (current && current !== currentHash) {
                 setActivePath(current);
                 window.history.replaceState(null, '', current);
@@ -95,6 +95,7 @@ export default function Layout() {
     };
 
     const navItems = [
+        { path: '#home', label: 'Home' },
         { path: '#about', label: 'About' },
         { path: '#project', label: 'Project' },
     ];
@@ -138,7 +139,7 @@ export default function Layout() {
 
                     <h1 className="text-2xl font-bold text-gray-900 mb-2">박미현</h1>
                     <p className="text-lg text-gray-600 font-medium mb-1">Frontend Developer</p>
-                    <p className="text-sm text-gray-500 mb-2">2023.10 - Present</p>
+                    <p className="text-sm text-gray-500 mb-6">2023.10 - Present</p>
 
                     {/* 네비게이션 */}
                     <nav className="w-full">
@@ -148,10 +149,10 @@ export default function Layout() {
                                     <a
                                         href={item.path}
                                         className={`
-                                            block px-6 py-3 text-center font-medium transition-all duration-200
+                                            block px-6 py-3 text-center font-medium transition-all duration-200 rounded-lg
                                             ${
                                                 isActive(item.path)
-                                                    ? 'bg-gray-900 text-white'
+                                                    ? 'bg-gray-900 text-white shadow-md'
                                                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                                             }
                                         `}
@@ -168,13 +169,13 @@ export default function Layout() {
             {/* 메인 컨텐츠 */}
             <main className="pt-20 md:pt-12 md:ml-80 px-4 md:px-8 pb-12">
                 <div className="max-w-6xl mx-auto animate-fade-in">
-                    {/* <section id="home" className="scroll-mt-24 md:scroll-mt-16 mb-16">
+                    <section id="home" className="scroll-mt-24 md:scroll-mt-16 mb-16">
                         <Home />
-                    </section> */}
+                    </section>
                     <section id="about" className="scroll-mt-24 md:scroll-mt-16 mb-16">
                         <About />
                     </section>
-                    <section id="project" className="scroll-mt-24 md:scroll-mt-16 border-t border-gray-100 pt-10">
+                    <section id="project" className="scroll-mt-24 md:scroll-mt-16">
                         <Project />
                     </section>
                 </div>
