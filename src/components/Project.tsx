@@ -85,9 +85,25 @@ export default function Project() {
     const sideProjects = [
         {
             title: '딱,가계부 - 가계부 관리 앱',
-            description: 'Android 출시 예정 · 비공개 테스트 진행 중',
-            skills: 'React Native (TypeScript), Supabase, React Navigation, react-native-calendars, react-native-chart-kit, react-native-vision-camera, Google Mobile Ads',
-            review: 'Supabase 클라우드 DB 기반 가계부 앱으로, Android 스토어 출시를 목표로 개발 중입니다. 현재 비공개 테스트 진행 중입니다.\n\nSupabase Authentication으로 회원가입/로그인을 구현하고, 실시간 데이터 동기화로 지출/수입 내역을 관리합니다. 카메라 촬영 및 갤러리 선택으로 영수증 이미지를 첨부하고, 차트와 캘린더로 월별 통계를 시각화했습니다. Google Mobile Ads를 연동해 배너 및 전면 광고를 구현했습니다.\n\nAI 도구를 활용해 UI/UX 디자인을 기획하고, 그라데이션 배경과 반응형 레이아웃으로 사용자 경험을 개선했습니다. 클라우드 DB 설계, 인증 시스템 구축, 광고 수익화 모델 적용 등 실제 서비스 출시를 위한 전 과정을 경험했습니다.',
+            subtitle: '2025.10 ~ 2026.01 · 1인 개발 (기획, 디자인, 개발, 배포)',
+            image: '/img/moneylog-icon.png',
+            description: 'Supabase 클라우드 DB 기반 가계부 앱으로, Android 스토어에 정식 출시 완료했습니다.',
+            skills: [
+                { name: 'React Native', icon: '📱' },
+                { name: 'TypeScript', icon: '🔷' },
+                { name: 'Supabase', icon: '🗄️' },
+                { name: 'Figma', icon: '🎨' },
+                { name: 'GitHub Actions', icon: '⚙️' },
+                { name: 'Google Mobile Ads', icon: '📢' },
+            ],
+            highlights: [
+                '클라우드 기반 데이터 관리 시스템 전환 (SQLite → Supabase) 및 백엔드 구축부터 스토어 배포까지 전체 생명주기 경험',
+                'GitHub Actions를 활용한 인프라 자동화: Supabase 무료 플랜의 인스턴스 정지 방지를 위한 자동화 스크립트 구현',
+                '안드로이드 16KB 페이지 사이즈 호환성 문제 해결 및 최신 환경 대응',
+                'AI(Gemini) + Figma를 활용한 효율적인 디자인 리소스 제작 및 에셋 최적화',
+            ],
+            review: '초기 로컬 저장소(SQLite) 방식의 한계를 인지하고 Supabase(BaaS)를 도입하여 데이터 영속성 및 실시간 동기화 환경을 구축했습니다. 백엔드 구축부터 스토어 배포까지 앱 서비스의 전체 생명주기를 경험했고, Supabase 무료 플랜의 장기 미사용 시 인스턴스 정지 정책에 대응하기 위해 GitHub Actions로 매일 정해진 시간에 쿼리를 전송하는 자동화 스크립트를 구현했습니다.\n\n안드로이드 16KB 페이지 사이즈 호환성 문제를 최신 React Native 빌드 설정을 분석하여 해결했고, 1인 개발의 리소스 한계를 극복하기 위해 AI(Gemini)로 리소스 초안을 생성하고 Figma로 스토어 등록 규격에 맞춰 에셋을 정밀하게 가공했습니다.',
+            link: 'https://play.google.com/store/apps/details?id=com.simplemoneylog&hl=ko',
         },
     ];
 
@@ -302,19 +318,98 @@ export default function Project() {
                             key={index}
                             className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg border-2 border-blue-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 p-8"
                         >
-                            <h3 className="font-bold text-gray-900 mb-2 text-2xl">{project.title}</h3>
-                            <p className="text-base text-blue-700 font-semibold mb-4 flex items-center gap-2">
-                                <span className="inline-block w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                                {project.description}
-                            </p>
-                            <p className="text-sm text-gray-600 mb-4 font-medium">{project.skills}</p>
+                            {/* 헤더 */}
+                            <div className="mb-4 flex items-start gap-4">
+                                {project.image && (
+                                    <img
+                                        src={resolvePublicUrl(project.image)}
+                                        alt={project.title}
+                                        className="w-20 h-20 rounded-xl object-cover shadow-md flex-shrink-0"
+                                    />
+                                )}
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-gray-900 mb-2 text-2xl">{project.title}</h3>
+                                    {project.subtitle && (
+                                        <p className="text-base text-blue-700 font-semibold mb-2 flex items-center gap-2">
+                                            <span className="inline-block w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                            {project.subtitle}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* 설명 */}
+                            {project.description && (
+                                <p className="text-lg text-gray-700 leading-relaxed mb-4">{project.description}</p>
+                            )}
+
+                            {/* 주요 기능 */}
+                            {project.highlights && project.highlights.length > 0 && (
+                                <div className="mt-6 mb-4">
+                                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                        주요 개발 기능
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {project.highlights.map((highlight, idx) => (
+                                            <li key={idx} className="flex items-start gap-2 text-gray-700">
+                                                <span className="text-gray-900 mt-1">•</span>
+                                                <span>{highlight}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* 기술 스택 */}
+                            {project.skills && Array.isArray(project.skills) && project.skills.length > 0 && (
+                                <div className="my-4">
+                                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                        Tech Stack
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.skills.map((skill, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition-colors duration-200 rounded-lg"
+                                            >
+                                                {typeof skill.icon === 'string' ? (
+                                                    <span className="text-lg">{skill.icon}</span>
+                                                ) : (
+                                                    <span className="flex items-center">{skill.icon}</span>
+                                                )}
+                                                <span>{skill.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* 프로젝트 회고 */}
                             {project.review && (
                                 <div className="mb-4 p-6 bg-white rounded-lg border-l-4 border-blue-500">
-                                    <h4 className="text-base font-semibold text-gray-700 mb-3">프로젝트 상세</h4>
-                                    <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">
+                                    <h4 className="text-blue-900 font-semibold mb-2 flex items-center gap-2">
+                                        <span>💭</span>
+                                        핵심 기여 및 성과
+                                    </h4>
+                                    <p className="text-gray-800 leading-relaxed whitespace-pre-line text-sm">
                                         {project.review}
                                     </p>
                                 </div>
+                            )}
+
+                            {/* 링크 */}
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+                                >
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L14.54,17.15L16.81,19.42L20.16,15.19C21.16,14.5 21.75,13.31 21.75,12C21.75,10.69 21.16,9.5 20.16,8.81L16.81,4.58L14.54,6.85L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                    </svg>
+                                    <span>Google Play 스토어에서 보기</span>
+                                </a>
                             )}
                         </div>
                     ))}
