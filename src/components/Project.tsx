@@ -99,13 +99,11 @@ export default function Project() {
         { name: "Google Mobile Ads", icon: "📢" },
       ],
       highlights: [
-        "클라우드 기반 데이터 관리 시스템 전환 (SQLite → Supabase) 및 백엔드 구축부터 스토어 배포까지 전체 생명주기 경험",
-        "GitHub Actions를 활용한 인프라 자동화: Supabase 무료 플랜의 인스턴스 정지 방지를 위한 자동화 스크립트 구현",
-        "안드로이드 16KB 페이지 사이즈 호환성 문제 해결 및 최신 환경 대응",
-        "AI(Gemini) + Figma를 활용한 효율적인 디자인 리소스 제작 및 에셋 최적화",
+        "클라우드 기반 데이터 관리 시스템 전환 (SQLite → Supabase): 로컬 저장소 한계를 인지하고 BaaS 도입으로 데이터 영속성 및 실시간 동기화 환경 구축. 백엔드 구축부터 스토어 배포까지 전체 생명주기 경험",
+        "GitHub Actions를 활용한 인프라 자동화: Supabase 무료 플랜의 장기 미사용 시 인스턴스 정지 정책에 대응하기 위해 매일 정해진 시간에 쿼리를 전송하는 자동화 스크립트 구현",
+        "안드로이드 최신 환경 대응: 16KB 페이지 사이즈 호환성 문제를 최신 React Native 빌드 설정 분석 및 벤치마킹으로 해결. 의존성 패키지 버전 업그레이드로 최신 안드로이드 기기 호환성 확보",
+        "효율적인 디자인 리소스 제작: AI(Gemini)를 활용하여 아이콘 및 그래픽 리소스 초안 생성. Figma로 해상도별 이미지와 스토어 등록 규격에 맞춰 에셋 정밀 가공",
       ],
-      review:
-        "초기 로컬 저장소(SQLite) 방식의 한계를 인지하고 Supabase(BaaS)를 도입하여 데이터 영속성 및 실시간 동기화 환경을 구축했습니다. 백엔드 구축부터 스토어 배포까지 앱 서비스의 전체 생명주기를 경험했고, Supabase 무료 플랜의 장기 미사용 시 인스턴스 정지 정책에 대응하기 위해 GitHub Actions로 매일 정해진 시간에 쿼리를 전송하는 자동화 스크립트를 구현했습니다.\n\n안드로이드 16KB 페이지 사이즈 호환성 문제를 최신 React Native 빌드 설정을 분석하여 해결했고, 1인 개발의 리소스 한계를 극복하기 위해 AI(Gemini)로 리소스 초안을 생성하고 Figma로 스토어 등록 규격에 맞춰 에셋을 정밀하게 가공했습니다.",
       link: "https://play.google.com/store/apps/details?id=com.simplemoneylog&hl=ko",
     },
   ];
@@ -425,19 +423,6 @@ export default function Project() {
                     </div>
                   </div>
                 )}
-
-              {/* 프로젝트 회고 */}
-              {project.review && (
-                <div className="mb-4 p-6 bg-white rounded-lg border-l-4 border-blue-500">
-                  <h4 className="text-blue-900 font-semibold mb-2 flex items-center gap-2">
-                    <span>💭</span>
-                    핵심 기여 및 성과
-                  </h4>
-                  <p className="text-gray-800 leading-relaxed whitespace-pre-line text-sm">
-                    {project.review}
-                  </p>
-                </div>
-              )}
 
               {/* 링크 */}
               {project.link && (
