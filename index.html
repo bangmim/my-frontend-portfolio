@@ -395,14 +395,32 @@ summary:hover .s{color:var(--blue)}
     <div class="apps">
       <article>
         <h3>뉴로스</h3>
-        <p class="when">2025.11 ~ 현재, 7명 팀의 프론트엔드 리드</p>
+        <p class="when">2025.11 ~ 현재 · 7인 팀(PM 1, BE 2, FE 2, Design 2)의 프론트엔드 리드</p>
         <p class="desc">기사를 읽고 퀴즈를 풀며 학습하는 뉴스 리딩 앱입니다. 아이디어 기획과 앱 이름 선정을 주도했고, iOS와 Android에 정식 출시했습니다.</p>
         <ul class="dots">
           <li>버전 관리 전략과 배포 프로세스 수립, 기술 의사결정과 코드 리뷰</li>
-          <li>Zustand 기반 전역 모달, 인증, 포인트 상태 설계</li>
-          <li>Google, Kakao, Naver, Apple 소셜 로그인 통합</li>
-          <li>온보딩 중 앱을 껐다 켜도 이탈한 페이지부터 이어지도록 구현</li>
+          <li>Zustand로 전역 모달, 인증, 포인트, 경험치 상태를 하나의 흐름으로 설계</li>
+          <li>TanStack Query로 서버 상태 캐싱과 재패칭, Axios 인스턴스 중앙화와 응답 타입 엄격화</li>
+          <li>Google, Kakao, Naver, Apple 소셜 로그인을 공용 인증 레이어로 통합</li>
+          <li>Firebase Analytics 연동과 리워드 광고로 사용자 경험과 수익화를 함께 고려</li>
+          <li>RN이 처음인 동료를 주간 컨디션 체크로 멘토링해 팀 속도와 코드 품질을 맞춤</li>
         </ul>
+        <div class="ts">
+          <h4>문제 해결 기록</h4>
+          <div class="ts-head"><span>증상</span><span>진짜 원인</span></div>
+          <details>
+            <summary><span class="s">온보딩 중에 앱을 끄면 처음부터 다시 시작됨</span><span class="c"><span>진행 상태가 메모리에만 있어 재진입 시 복원할 근거가 없음</span></span></summary>
+            <div class="ts-body">
+              <p>온보딩 단계 식별자와 입력값을 AsyncStorage에 단계마다 저장하고, 앱 재시작 시 저장된 상태를 확인해 해당 페이지로 라우팅하도록 분기를 넣었습니다. 완료 시 명시적으로 지워 다음 사용자에게 영향이 가지 않도록 했습니다.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="s">모달이 화면마다 생겼다 사라지며 중복 구현됨</span><span class="c"><span>모달 상태가 각 화면 로컬에 있어 교차 전환 시 겹치거나 사라짐</span></span></summary>
+            <div class="ts-body">
+              <p>Zustand에 전역 모달 큐를 두어 열기·닫기·우선순위를 한 곳에서 처리했습니다. 호출부는 종류와 페이로드만 넘기면 되고, 레이아웃·접근성 처리는 공용 컴포넌트가 담당합니다.</p>
+            </div>
+          </details>
+        </div>
         <div class="links">
           <a class="btn sm" href="https://apps.apple.com/kr/app/뉴로스-neurous/id6757225558" target="_blank" rel="noopener">App Store에서 보기</a>
           <a class="btn sm" href="https://play.google.com/store/apps/details?id=io.neurous.app" target="_blank" rel="noopener">Google Play에서 보기</a>
@@ -411,13 +429,30 @@ summary:hover .s{color:var(--blue)}
 
       <article>
         <h3>딱, 가계부</h3>
-        <p class="when">2025.10 출시 작업 시작, 현재 운영 중, 1인 개발</p>
-        <p class="desc">기획, 디자인, 개발, 배포를 혼자 한 가계부 앱입니다. Google Play에 정식 출시해 직접 관리하고 있습니다.</p>
+        <p class="when">2025.10 ~ 2026.01 출시 작업 · 현재 운영 중 · 1인 개발</p>
+        <p class="desc">기획, 디자인, 개발, 배포를 혼자 한 가계부 앱입니다. Google Play에 정식 출시해 직접 운영하고 있습니다.</p>
         <ul class="dots">
-          <li>기기를 바꾸면 데이터가 사라지는 문제를 보고 SQLite에서 Supabase 클라우드 DB로 전환</li>
+          <li>로컬 저장소 한계를 인지하고 SQLite에서 Supabase 클라우드 DB로 전환, 백엔드부터 스토어 배포까지 전체 생애주기 경험</li>
           <li>무료 플랜의 인스턴스 정지를 GitHub Actions 일일 쿼리로 추가 비용 없이 해결</li>
-          <li>Android 16KB 페이지 사이즈 호환 문제를 의존성 업그레이드와 gradle 설정 수정으로 해결</li>
+          <li>Android 16KB 페이지 사이즈 호환 문제를 gradle 설정과 의존성 업그레이드로 해결</li>
+          <li>AI로 디자인 리소스 초안을 생성하고 Figma로 해상도별·스토어 규격에 맞춰 가공</li>
         </ul>
+        <div class="ts">
+          <h4>문제 해결 기록</h4>
+          <div class="ts-head"><span>증상</span><span>진짜 원인</span></div>
+          <details>
+            <summary><span class="s">기기를 바꾸거나 앱을 지우면 가계부 데이터가 사라짐</span><span class="c"><span>데이터가 로컬 SQLite에만 있어 디바이스 수명과 데이터 수명이 같아짐</span></span></summary>
+            <div class="ts-body">
+              <p>Supabase로 옮겨 사용자별 데이터를 클라우드에 두고, 로그인 후 디바이스가 바뀌어도 동일하게 조회·수정되도록 했습니다. 전환 과정에서 로컬 스키마를 원격 테이블과 매핑하고, 네트워크 실패 시 로컬 큐에 쌓았다가 재전송하는 경로를 추가했습니다.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span class="s">7일 미사용이면 Supabase 인스턴스가 정지됨</span><span class="c"><span>이용자 수가 적어 자연 트래픽으로는 활성 조건을 못 채움</span></span></summary>
+            <div class="ts-body">
+              <p>GitHub Actions에 매일 정해진 시간에 가벼운 조회 쿼리를 돌리는 워크플로를 추가해 추가 비용 없이 활성 상태를 유지했습니다. 로그에서 실행 성공 여부를 주기적으로 확인하는 절차를 함께 두었습니다.</p>
+            </div>
+          </details>
+        </div>
         <div class="links">
           <a class="btn sm" href="https://play.google.com/store/apps/details?id=com.simplemoneylog&hl=ko" target="_blank" rel="noopener">Google Play에서 보기</a>
         </div>
