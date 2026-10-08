@@ -42,7 +42,8 @@ a{color:inherit}
 .hero{padding:72px 0 96px}
 .hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
 .hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.16;letter-spacing:-.035em;font-weight:700}
-.hero .lede{margin-top:26px;font-size:1.08rem;max-width:30em;color:var(--sub)}
+.hero .meta{margin-top:18px;font-size:.95rem;font-weight:600;color:var(--blue);letter-spacing:-.01em}
+.hero .lede{margin-top:14px;font-size:1.08rem;max-width:30em;color:var(--sub)}
 .links{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;border:2px solid var(--blue);color:var(--blue);background:none;cursor:pointer;font-family:inherit}
 .btn:hover{background:var(--blue);color:#fff}
@@ -58,7 +59,7 @@ a{color:inherit}
 .deck .cause-box{margin-top:24px;padding-top:20px;border-top:2px dashed var(--line);flex:1}
 .deck .cause-box h2{margin-top:0}
 .deck .cause{font-size:1.1rem;line-height:1.6;font-weight:600;margin-top:8px}
-.deck .cause span{background:var(--yellow);padding:2px 5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.deck .cause span,summary .c span,.hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .deck .fix{margin-top:12px;font-size:.92rem;color:var(--sub)}
 .deck .impact{margin-top:6px;font-size:.92rem;color:var(--ink);font-weight:600}
 .deck .hidden-hint{margin-top:8px;color:#9aa0c4}
@@ -66,6 +67,7 @@ a{color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .deck-actions{display:flex;gap:10px;margin-top:20px}
 .deck-actions button{font-family:inherit;font-size:.95rem;font-weight:600;border-radius:10px;padding:12px 18px;cursor:pointer;border:2px solid var(--line);background:none;color:var(--ink)}
+.deck-actions #dPrev{min-width:92px}
 .deck-actions .primary{background:var(--blue);color:#fff;border-color:var(--blue);flex:1}
 .deck-actions .primary:hover{background:var(--ink);border-color:var(--ink)}
 .deck-actions button:focus-visible{outline-color:var(--ink)}
@@ -82,6 +84,8 @@ a{color:inherit}
 .project + .project{margin-top:88px;padding-top:72px;border-top:1px solid var(--line)}
 .project h3{font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.035em;line-height:1.15}
 .project .tag{margin-top:12px;font-size:1.08rem;max-width:34em}
+.project .headline{margin-top:16px;font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.5;max-width:40em}
+.project .headline b{color:var(--blue);background:linear-gradient(transparent 55%,var(--yellow) 55%);padding:0 2px}
 .ai-badge{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--blue);background:var(--tint);border:1px solid var(--line);padding:5px 11px;border-radius:999px;margin-top:14px;letter-spacing:-.01em}
 .ai-badge::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue)}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px;margin-top:32px}
@@ -103,8 +107,9 @@ a{color:inherit}
 .fig p.cap{font-size:.92rem;font-weight:600;margin-bottom:14px}
 .fig img{display:block;width:100%;border-radius:8px;background:#fff}
 .fig img + img{margin-top:10px}
-.bar{height:36px;border-radius:7px;background:#c4c9ee;display:flex;align-items:center;padding:0 12px;font-size:.88rem;font-weight:600;white-space:nowrap}
+.bar{height:36px;border-radius:7px;background:#c4c9ee;color:var(--ink);display:flex;align-items:center;padding:0 12px;font-size:.88rem;font-weight:600;white-space:nowrap}
 .bar + .bar{margin-top:8px}
+.bar.before{width:100%}
 .bar.after{background:var(--blue);color:#fff;width:51.2%}
 .fig .note{font-size:.85rem;color:var(--sub);margin-top:12px;line-height:1.6}
 .pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
@@ -127,7 +132,7 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"+";position:absolute;right:6px;top:12px;font-size:1.6rem;color:var(--blue);transition:transform .2s}
 details[open] summary::after{transform:rotate(45deg)}
 summary .s{font-weight:700}
-summary .c span{background:linear-gradient(transparent 55%,var(--yellow) 55%)}
+/* summary .c span 스타일은 .deck .cause span,summary .c span 통합 규칙으로 이동 */
 summary:hover .s{color:var(--blue)}
 .ts-body{padding:2px 44px 26px 0;max-width:46em;font-size:.95rem}
 .ts-body p + p{margin-top:10px}
@@ -171,6 +176,7 @@ summary:hover .s{color:var(--blue)}
 /* nav active (scrollspy) */
 .nav a.is-active{opacity:1;color:var(--blue)}
 .nav a.is-active::after{content:"";display:block;height:3px;background:var(--blue);margin-top:4px;border-radius:2px}
+.nav a.is-active:hover{text-decoration:none}
 
 /* scroll reveal (글로벌 — 데크 내부의 .deck .reveal 과 충돌 피하려고 v-reveal로 네임스페이스 분리) */
 .v-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
@@ -236,6 +242,8 @@ summary:hover .s{color:var(--blue)}
       <li><a href="#ai">AI 활용</a></li>
       <li><a href="#cv">이력</a></li>
       <li><a href="#contact">연락처</a></li>
+      <!-- TODO: 다음 세션에서 실제 PDF 파일 경로로 교체. href="resume.pdf" 또는 Google Drive 공유 링크 -->
+      <li><a href="resume.pdf" download>이력서</a></li>
     </ul>
   </div>
 </nav>
@@ -244,9 +252,12 @@ summary:hover .s{color:var(--blue)}
   <div class="wrap">
     <div>
       <h1>테스트가 통과해도, 화면을 직접 띄워 봅니다.</h1>
-      <p class="lede">3년 차 프론트엔드 개발자 박미현입니다. React Native 앱과 React 관리자 웹을 만들고, 스토어 출시와 운영까지 맡습니다. 문제가 보인 화면에서 멈추지 않고, 서버 쿼리와 빌드 설정까지 내려가 원인을 고칩니다.</p>
+      <p class="meta">박미현 · 3년 차 프론트엔드 개발자 · React Native/React · 핀게이트 재직 중</p>
+      <p class="lede">앱과 관리자 웹을 만들고 스토어 출시·운영까지 맡습니다. 문제가 보인 화면에서 멈추지 않고 서버 쿼리와 빌드 설정까지 내려가 원인을 고칩니다.</p>
       <div class="links">
         <a class="btn solid" href="#work">프로젝트 보기</a>
+        <!-- TODO: 다음 세션에서 실제 PDF 경로로 교체 -->
+        <a class="btn" href="resume.pdf" download>이력서 받기</a>
         <a class="btn" href="#contact">연락하기</a>
       </div>
     </div>
@@ -278,6 +289,7 @@ summary:hover .s{color:var(--blue)}
       <h3>보험 아카이브</h3>
       <div><span class="ai-badge">Claude Code 기반 워크플로로 개발</span></div>
       <p class="tag">보험 공지, Q&amp;A, 판례, 뉴스, 보험사 정보, 계산기, 통계를 한곳에 모은 정보 서비스입니다. 웹과 모바일 앱으로 제공합니다.</p>
+      <p class="headline"><b>자산 용량 -69%, 기획 정본 문서 50여 편을 JSON 하나로 통합</b></p>
       <dl class="facts">
         <div><dt>기간</dt><dd>2026.08 ~ 09<small>약 6주</small></dd></div>
         <div><dt>담당</dt><dd>모바일 앱<small>화면 구축, 출시 준비, 검증 도구</small></dd></div>
@@ -347,6 +359,7 @@ summary:hover .s{color:var(--blue)}
       <h3>모꼬지</h3>
       <div><span class="ai-badge">Claude Code 기반 워크플로로 개발</span></div>
       <p class="tag">기업과 단체의 MT, 워크숍, 연수 운영을 참가자 앱과 관리자 웹으로 통합한 B2B 서비스입니다. 1.0.0 정식 릴리스 준비 구간을 맡았습니다.</p>
+      <p class="headline"><b>관리자 웹 초기 로드 -49%, 참가자 핵심 흐름 6개 E2E 자동화</b></p>
       <dl class="facts">
         <div><dt>기간</dt><dd>2026.06 ~ 08<small>약 7주</small></dd></div>
         <div><dt>담당</dt><dd>앱, 웹, 백엔드<small>프론트 전반과 담당 기능의 API, 쿼리</small></dd></div>
@@ -372,8 +385,8 @@ summary:hover .s{color:var(--blue)}
         <div>
           <div class="fig">
             <p class="cap">관리자 웹 초기 로드 번들</p>
-            <div class="bar">539 kB</div>
-            <div class="bar after">276 kB</div>
+            <div class="bar before" aria-label="초기 로드 539 킬로바이트">539 kB</div>
+            <div class="bar after" aria-label="개선 후 276 킬로바이트, 약 51% 수준">276 kB</div>
             <p class="note">라우트별로 코드를 쪼개고, 라우트 파일에 섞여 있던 화면들을 분리해 실제로 갈라질 수 있는 구조로 먼저 바꿨습니다.</p>
           </div>
         </div>
@@ -390,7 +403,7 @@ summary:hover .s{color:var(--blue)}
           </div>
         </details>
         <details>
-          <summary><span class="s">유닛 테스트는 통과하는데 실제 브라우저에서만 흰 화면</span><span class="c"><span>가상 DOM이 '마운트 성공'을 '사용자 눈에 보이는 것'과 동일시하는 패턴. 참조 끊김은 가상 DOM에서는 안 보임</span></span></summary>
+          <summary><span class="s">유닛 테스트는 통과하는데 실제 브라우저에서만 흰 화면</span><span class="c"><span>jsdom 같은 가상 환경과 실 브라우저의 모듈 로딩·CSS·플랫폼 조건부 코드가 달라, 테스트에선 안 재현되는 참조 끊김이 운영에서만 터지는 패턴</span></span></summary>
           <div class="ts-body">
             <p>실측 환경(실 브라우저·실 기기)을 최종 게이트로 두고, 그 결과를 팀 검증 절차의 공식 단계로 승격했습니다. '테스트가 통과했는가'와 '사용자가 볼 수 있는가'를 분리해 다룹니다.</p>
             <p class="scope">같은 패턴: 번들 분리·동적 import·플랫폼 조건부 렌더 등 '실행 시 결정'이 끼어드는 모든 변경.</p>
@@ -399,7 +412,7 @@ summary:hover .s{color:var(--blue)}
         <details>
           <summary><span class="s">비로그인 접근이 필요한 엔드포인트가 식별자 추측 공격에 노출</span><span class="c"><span>인증 없는 응답이 평문 식별자를 그대로 받아 조회하는 패턴</span></span></summary>
           <div class="ts-body">
-            <p>식별자를 암호화된 페이로드로 감싸고, 응답 DTO를 조회용으로 분리해 민감 정보를 마스킹했습니다. 인증 예외는 해당 엔드포인트에만 한정해 보안 정책의 강도를 유지했습니다.</p>
+            <p>식별자를 서명된 불가추측 토큰으로 교체해 서버가 검증된 값으로만 조회하도록 하고, 응답 DTO를 조회용으로 분리해 민감 정보를 마스킹했습니다. 인증 예외는 해당 엔드포인트에만 한정해 보안 정책의 강도를 유지했습니다.</p>
             <p class="scope">같은 패턴: 공유 링크·초대장·일회성 토큰 등 비로그인 접근이 필요한 모든 흐름.</p>
           </div>
         </details>
@@ -410,6 +423,7 @@ summary:hover .s{color:var(--blue)}
     <article class="project v-reveal">
       <h3>약매니저</h3>
       <p class="tag">약국과 의료기관이 의약품 계수, 주문, 재고 관리와 커뮤니티를 한 번에 쓰는 업무 앱입니다. 프론트엔드 개발과 유지보수를 맡았습니다.</p>
+      <p class="headline"><b>리뉴얼 직후 비정상 종료율 하락, 실시간 채팅 메시지 유실 0건으로 안정화</b></p>
       <dl class="facts facts-3">
         <div><dt>기간</dt><dd>2023.10 ~ 2026.03<small>약 2년 6개월</small></dd></div>
         <div><dt>담당</dt><dd>앱, 사내 CMS<small>개발, 유지보수, 릴리즈 대응</small></dd></div>
@@ -425,7 +439,7 @@ summary:hover .s{color:var(--blue)}
             <li>화면마다 흩어져 있던 모달과 로딩 UI를 공용 컴포넌트로 묶어 일관성 확보</li>
             <li>사내 CMS 신규 화면 개발과 Google 계정 기반 진입점 적용</li>
           </ul>
-          <p class="stack">React Native · TypeScript · Redux · Zustand · Stomp.js · Firebase · React · Tailwind</p>
+          <p class="stack">React Native · TypeScript · Redux · Zustand · @stomp/stompjs · Firebase · React · Tailwind</p>
         </div>
         <div>
           <div class="fig">
@@ -520,8 +534,8 @@ summary:hover .s{color:var(--blue)}
     <p class="intro">핀게이트에서 맡은 <b>모꼬지</b>와 <b>보험 아카이브</b>는 Claude Code 기반 워크플로에서 작업했습니다. 속도보다 중요했던 건 AI가 틀리는 지점을 알고 그 앞에 게이트를 세우는 일이었습니다. 디자인 QA 스킬부터 팀 공용 파이프라인·MCP 서버까지, 반복되는 작업을 절차로 굳혀 왔습니다.</p>
 
     <dl class="facts">
-      <div><dt>CI 검증 시간</dt><dd>-47%<small>로컬 자동화 스킬 적용 후</small></dd></div>
-      <div><dt>MR 피드백 턴어라운드</dt><dd>-69%<small>팀 공용 스킬 배포 후</small></dd></div>
+      <div><dt>CI 검증 시간</dt><dd>-47%<small>로컬 자동화 스킬 적용 전후 비교 · 측정 상세 면접 시 공유</small></dd></div>
+      <div><dt>MR 피드백 턴어라운드</dt><dd>-69%<small>팀 공용 스킬 배포 전후 비교 · 측정 상세 면접 시 공유</small></dd></div>
       <div><dt>자동화 스킬</dt><dd>5종<small>Figma 추출 · 화면 조립 · API 연결 · 테스트 작성</small></dd></div>
       <div><dt>MCP 서버</dt><dd>2종<small>개발 사이클 관리 · 코드 품질 분석</small></dd></div>
     </dl>
@@ -569,7 +583,12 @@ summary:hover .s{color:var(--blue)}
     <a class="mail" href="mailto:akiyun10@gmail.com">akiyun10@gmail.com</a>
     <div class="links">
       <a class="btn solid" href="mailto:akiyun10@gmail.com">이메일 보내기</a>
-      <a class="btn" href="https://github.com/bangmim" target="_blank" rel="noopener">GitHub 열기</a>
+      <a class="btn" href="https://github.com/bangmim" target="_blank" rel="noopener">GitHub</a>
+      <!-- TODO: 다음 세션에서 실제 LinkedIn URL로 교체 -->
+      <a class="btn" href="#linkedin" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/bangmim/my-frontend-portfolio" target="_blank" rel="noopener">이 포트폴리오 저장소</a>
+      <!-- TODO: 다음 세션에서 실제 PDF 경로로 교체 -->
+      <a class="btn" href="resume.pdf" download>이력서 PDF</a>
     </div>
   </div>
 </footer>
