@@ -62,7 +62,7 @@ a{color:inherit}
 .deck .fix{margin-top:12px;font-size:.92rem;color:var(--sub)}
 .deck .impact{margin-top:6px;font-size:.92rem;color:var(--ink);font-weight:600}
 .deck .hidden-hint{margin-top:8px;color:#9aa0c4}
-.deck .reveal{animation:rise .35s ease}
+.deck .reveal{animation:rise .35s ease forwards}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .deck-actions{display:flex;gap:10px;margin-top:20px}
 .deck-actions button{font-family:inherit;font-size:.95rem;font-weight:600;border-radius:10px;padding:12px 18px;cursor:pointer;border:2px solid var(--line);background:none;color:var(--ink)}
@@ -169,9 +169,9 @@ summary:hover .s{color:var(--blue)}
 .nav a.is-active{opacity:1;color:var(--blue)}
 .nav a.is-active::after{content:"";display:block;height:3px;background:var(--blue);margin-top:4px;border-radius:2px}
 
-/* scroll reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
-.reveal.is-visible{opacity:1;transform:none}
+/* scroll reveal (글로벌 — 데크 내부의 .deck .reveal 과 충돌 피하려고 v-reveal로 네임스페이스 분리) */
+.v-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.v-reveal.is-visible{opacity:1;transform:none}
 
 /* 모바일 네비 토글 */
 .nav-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer;font:inherit}
@@ -215,7 +215,7 @@ summary:hover .s{color:var(--blue)}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none}
+  .v-reveal{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -271,7 +271,7 @@ summary:hover .s{color:var(--blue)}
     <h2>실무 프로젝트</h2>
 
     <!-- 보험 아카이브 -->
-    <article class="project reveal">
+    <article class="project v-reveal">
       <h3>보험 아카이브</h3>
       <p class="tag">보험 공지, Q&amp;A, 판례, 뉴스, 보험사 정보, 계산기, 통계를 한곳에 모은 정보 서비스입니다. 웹과 모바일 앱으로 제공합니다.</p>
       <dl class="facts">
@@ -339,7 +339,7 @@ summary:hover .s{color:var(--blue)}
     </article>
 
     <!-- 모꼬지 -->
-    <article class="project reveal">
+    <article class="project v-reveal">
       <h3>모꼬지</h3>
       <p class="tag">기업과 단체의 MT, 워크숍, 연수 운영을 참가자 앱과 관리자 웹으로 통합한 B2B 서비스입니다. 1.0.0 정식 릴리스 준비 구간을 맡았습니다.</p>
       <dl class="facts">
@@ -402,7 +402,7 @@ summary:hover .s{color:var(--blue)}
     </article>
 
     <!-- 약매니저 -->
-    <article class="project reveal">
+    <article class="project v-reveal">
       <h3>약매니저</h3>
       <p class="tag">약국과 의료기관이 의약품 계수, 주문, 재고 관리와 커뮤니티를 한 번에 쓰는 업무 앱입니다. 프론트엔드 개발과 유지보수를 맡았습니다.</p>
       <dl class="facts facts-3">
@@ -439,7 +439,7 @@ summary:hover .s{color:var(--blue)}
     <h2>스토어에 출시한 앱</h2>
     <p class="intro">회사 밖에서 기획부터 배포까지 직접 끌고 간 두 앱입니다.</p>
     <div class="apps">
-      <article class="reveal">
+      <article class="v-reveal">
         <h3>뉴로스</h3>
         <p class="when">7인 팀의 프론트엔드 리드 · iOS와 Android 정식 출시</p>
         <p class="desc">기사를 읽고 퀴즈를 풀며 학습하는 뉴스 리딩 앱입니다. 아이디어와 이름 선정부터 앱 출시까지 참여했습니다.</p>
@@ -473,7 +473,7 @@ summary:hover .s{color:var(--blue)}
         </div>
       </article>
 
-      <article class="reveal">
+      <article class="v-reveal">
         <h3>딱, 가계부</h3>
         <p class="when">1인 개발로 Google Play 정식 출시 · 현재 운영 중</p>
         <p class="desc">기획, 디자인, 개발, 배포를 혼자 한 가계부 앱입니다.</p>
@@ -638,7 +638,7 @@ linkBySection.forEach((_,sec)=>spy.observe(sec));
 
 // 스크롤 등장
 const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const reveals=document.querySelectorAll(".reveal");
+const reveals=document.querySelectorAll(".v-reveal");
 if(reduceMotion||!("IntersectionObserver" in window)){
   reveals.forEach(el=>el.classList.add("is-visible"));
 }else{
